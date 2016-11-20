@@ -1,0 +1,33 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+class THalflingThief {
+ + New(TStealingMethod)
+ + steal()
+ + changeMethod(TStealingMethod)
+}
+
+abstract class TStealingMethod {
+ + pickTarget:String() {abstract}
+ + confuseTarget(String) {abstract}
+ + stealTheItem(String) {abstract}
+ + steal()
+}
+
+class THitAndRunMethod {
+ + pickTarget:String()
+ + confuseTarget(String)
+ + stealTheItem(String)
+}
+
+class TSubtleMethod {
+ + pickTarget:String()
+ + confuseTarget(String)
+ + stealTheItem(String)
+}
+
+THalflingThief --> TStealingMethod
+TStealingMethod <|-- THitAndRunMethod
+TStealingMethod <|-- TSubtleMethod
+
+@enduml

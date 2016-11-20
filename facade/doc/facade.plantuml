@@ -1,0 +1,39 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+class TDwarvenGoldmineFacade {
+ + startNewDay()
+ + digOutGold()
+ + endDay()
+}
+
+abstract class TDwarvenMineWorker {
+ + goToSleep()
+ + wakeUp()
+ + goHome()
+ + goToMine()
+ + work() {abstract}
+ + name:String() {abstract}
+}
+
+class TDwarvenCartOperator {
+ + work()
+ + name:String()
+}
+
+class TDwarvenTunnelDigger {
+ + work()
+ + name:String()
+}
+
+class TDwarvenGoldDigger {
+ + work()
+ + name:String()
+}
+
+TDwarvenGoldmineFacade --> TDwarvenMineWorker
+TDwarvenMineWorker <|-- TDwarvenCartOperator
+TDwarvenMineWorker <|-- TDwarvenTunnelDigger
+TDwarvenMineWorker <|-- TDwarvenGoldDigger
+
+@enduml

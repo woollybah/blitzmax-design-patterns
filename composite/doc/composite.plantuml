@@ -1,0 +1,43 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface TMessenger {
+ + messageFromOrcs:TLetterComposite()
+ + messageFromElves:TLetterComposite()
+}
+
+abstract class TLetterComposite {
+ + add(TLetterComposite)
+ + count:Int()
+ + printThisBefore() {abstract}
+ + printThisAfter() {abstract}
+ + print()
+}
+
+class TLetter {
+ + New(Int)
+ + printThisBefore()
+ + printThisAfter()
+}
+
+class TWord {
+ + New(TList)
+ + printThisBefore()
+ + printThisAfter()
+}
+
+class TSentence {
+ + New(TList)
+ + printThisBefore()
+ + printThisAfter()
+}
+
+TMessenger .> TLetterComposite
+TLetterComposite <- TLetterComposite
+TLetterComposite <|-- TLetter
+TLetterComposite <|-- TWord
+TLetterComposite <|-- TSentence
+
+@enduml

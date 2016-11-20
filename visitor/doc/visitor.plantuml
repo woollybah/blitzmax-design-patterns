@@ -1,0 +1,62 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface IUnitVisitor {
+ + visitSoldier(TSoldier)
+ + visitSergeant(TSergeant)
+ + visitCommander(TCommander)
+}
+
+abstract class TUnit {
+ + New(TUnit[])
+ + accept(IUnitVisitor)
+}
+
+class TCommander {
+ + New(TUnit[])
+ + accept(IUnitVisitor)
+ + ToString:String()
+}
+
+class TSergeant {
+ + New(TUnit[])
+ + accept(IUnitVisitor)
+ + ToString:String()
+}
+
+class TSoldier {
+ + New(TUnit[])
+ + accept(IUnitVisitor)
+ + ToString:String()
+}
+
+class TCommanderVisitor {
+ + visitSoldier(TSoldier)
+ + visitSergeant(TSergeant)
+ + visitCommander(TCommander)
+}
+
+class TSergeantVisitor {
+ + visitSoldier(TSoldier)
+ + visitSergeant(TSergeant)
+ + visitCommander(TCommander)
+}
+
+class TSoldierVisitor {
+ + visitSoldier(TSoldier)
+ + visitSergeant(TSergeant)
+ + visitCommander(TCommander)
+}
+
+TSergeantVisitor ..|> IUnitVisitor
+TCommanderVisitor .|> IUnitVisitor
+IUnitVisitor <|. TSoldierVisitor
+IUnitVisitor <.. TUnit
+TCommander -|> TUnit
+TUnit <|-- TSergeant
+TUnit <|- TSoldier
+TUnit <-- TUnit
+
+@enduml

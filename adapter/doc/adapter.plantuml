@@ -1,0 +1,33 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface IBattleship {
+ + fire()
+ + move()
+}
+
+class TCaptain {
+ + New(IBattleship)
+ + setBattleship(IBattleship)
+ + fire()
+ + move()
+}
+
+class TBattleFishingBoat {
+ + fire()
+ + move()
+}
+
+class TFishingBoat {
+ + sail()
+ + fish()
+}
+
+IBattleship <|.. TBattleFishingBoat
+TBattleFishingBoat -> TFishingBoat
+TCaptain .|> "-battleship" IBattleship
+TCaptain -> "0..1" IBattleship
+
+@enduml

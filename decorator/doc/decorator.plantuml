@@ -1,0 +1,29 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface IHostile {
+ + attack()
+ + getAttackPower:Int()
+ + fleeBattle()
+}
+
+class TTroll {
+ + attack()
+ + getAttackPower:Int()
+ + fleeBattle()
+}
+
+class TSmartHostile {
+ + New(IHostile)
+ + attack()
+ + getAttackPower:Int()
+ + fleeBattle()
+}
+
+TTroll .|> IHostile
+IHostile <|. TSmartHostile
+IHostile <- TSmartHostile
+
+@enduml

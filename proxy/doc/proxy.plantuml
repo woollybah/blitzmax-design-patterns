@@ -1,0 +1,26 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+class TWizardTower {
+  enter(TWizard)
+}
+
+class TWizardTowerProxy {
+ - NUM_WIZARDS_ALLOWED : Int = 3{static}
+ - numWizards : Int
+ + enter(TWizard)
+}
+
+class TWizard {
+ - name :String
+ + New(name:String)
+ + ToString:String()
+}
+
+TWizardTower <|-- TWizardTowerProxy
+TWizardTowerProxy .> TWizard
+"  App  " .> TWizardTowerProxy
+
+@enduml

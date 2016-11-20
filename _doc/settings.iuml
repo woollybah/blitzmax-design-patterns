@@ -1,0 +1,6 @@
+skinparam {
+	shadowing false
+	classBorderColor black
+	classArrowColor black
+}
+hide circle

@@ -1,0 +1,79 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IHeroFactory {
+ + createMage:TMage()
+ + createWarlord:TWarlord()
+ + createBeast:TBeast()
+}
+
+class THeroFactoryImpl {
+ + New(TMage, TWarlord, TBeast)
+ + createMage:TMage()
+ + createWarlord:TWarlord()
+ + createBeast:TBeast()
+}
+
+abstract class TWarlord {
+ + clone:TWarlord() {abstract}
+}
+
+abstract class TBeast {
+ + clone:TBeast() {abstract}
+}
+
+abstract class TMage {
+ + clone:TMage() {abstract}
+}
+
+class TElfWarlord {
+ + clone:TWarlord()
+ + ToString:String()
+}
+
+class TOrcWarlord {
+ + clone:TWarlord()
+ + ToString:String()
+}
+
+class TElfBeast {
+ + clone:TBeast()
+ + ToString:String()
+}
+
+class TOrcBeast {
+ + clone:TBeast()
+ + ToString:String()
+}
+
+class TElfMage {
+ + clone:TMage()
+ + ToString:String()
+}
+
+class TOrcMage {
+ + clone:TMage()
+ + ToString:String()
+}
+
+abstract class TPrototype {
+ + clone:Object()
+}
+
+IHeroFactory <|-- THeroFactoryImpl
+THeroFactoryImpl --> TWarlord
+THeroFactoryImpl --> TBeast
+THeroFactoryImpl --> TMage
+TWarlord <|- TElfWarlord
+TWarlord <|-- TOrcWarlord
+TBeast <|-- TElfBeast
+TBeast <|-- TOrcBeast
+TMage <|-- TElfMage
+TMage <|-- TOrcMage
+TWarlord --|> TPrototype
+TBeast --|> TPrototype
+TMage --|> TPrototype
+
+TOrcWarlord -[hidden]- TPrototype
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IBlacksmith {
+ + manufactureWeapon:IWeapon(Int)
+}
+
+class TOrcBlacksmith {
+ + manufactureWeapon:IWeapon(Int)
+}
+
+class TElfBlacksmith {
+ + manufactureWeapon:IWeapon(Int)
+}
+
+class TOrcWeapon {
+ + New(Int)
+ + ToString:String()
+}
+
+enum TWeaponType {
+ SHORT_SWORD:Int = 0 {static}
+ SPEAR:Int = 1 {static}
+ AXE:Int = 2 {static}
+}
+
+class TElfWeapon {
+ + New(Int)
+ + ToString:String()
+}
+
+interface IWeapon {
+}
+
+IBlacksmith <|.. TOrcBlacksmith
+IBlacksmith <|.. TElfBlacksmith
+TOrcBlacksmith ..> TOrcWeapon
+TElfBlacksmith ..> TElfWeapon
+TOrcWeapon -> TWeaponType
+TWeaponType <- TElfWeapon
+TOrcWeapon ..|> IWeapon
+TElfWeapon ..|> IWeapon
+
+@enduml

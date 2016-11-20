@@ -1,0 +1,59 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+class TRequest {
+ - requestDescription:String
+ + New(Int, String)
+ + getRequestDescription:String()
+ + setRequestDescription(String)
+ + getRequestType:Int()
+ + setRequestType(Int)
+ + ToString:String()
+}
+
+enum TRequestType {
+ DEFEND_CASTLE:Int = 0 {static}
+ TORTURE_PRISONER:Int = 1 {static}
+ COLLECT_TAX:Int = 2 {static}
+}
+
+abstract class TRequestHandler {
+ + New(TRequestHandler)
+ + handleRequest(TRequest)
+ + printHandling(TRequest)
+ + ToString:String() {abstract}
+}
+
+class TOrcKing {
+ + buildChain()
+ + makeRequest(TRequest)
+}
+
+class TOrcSoldier {
+ + New(TRequestHandler)
+ + handleRequest(TRequest)
+ + ToString:String()
+}
+
+class TOrcCommander {
+ + New(TRequestHandler)
+ + handleRequest(TRequest)
+ + ToString:String()
+}
+
+class TOrcOfficer {
+ + New(TRequestHandler)
+ + handleRequest(TRequest)
+ + ToString:String()
+}
+
+TRequestType <- TRequest
+TRequest <. TRequestHandler
+TOrcKing --> TRequestHandler
+TRequestHandler <|-- TOrcSoldier
+TRequestHandler <|-- TOrcCommander
+TRequestHandler <|-- TOrcOfficer
+
+@enduml

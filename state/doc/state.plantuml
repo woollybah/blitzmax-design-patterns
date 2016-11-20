@@ -1,0 +1,34 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IState {
+ + onEnterState()
+ + observe()
+}
+
+class TMammoth {
+ + timePasses()
+ - changeStateTo(Int)
+ + ToStringS:String()
+ + observe()
+}
+
+class TPeacefulState {
+ + New(TMammoth)
+ + observe()
+ + onEnterState()
+}
+
+class TAngryState {
+ + New(TMammoth)
+ + observe()
+ + onEnterState()
+}
+
+TMammoth <-- TPeacefulState
+TMammoth <-- TAngryState
+TMammoth --> IState
+TPeacefulState ..|> IState
+TAngryState ..|> IState
+
+@enduml

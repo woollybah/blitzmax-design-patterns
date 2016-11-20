@@ -1,0 +1,47 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface IItemIterator {
+ + hasNext:Int()
+ + nextItem:TItem()
+}
+
+class TItem {
+ - name:String
+ + New(Int, String)
+ + getType:Int()
+ + setType(Int)
+ + ToString:String()
+}
+
+class TTreasureChestItemIterator {
+ - idx
+ + New(TTreasureChest, Int)
+ + hasNext:Int()
+ + nextItem:TItem()
+ + findNextIndex()
+}
+
+class TTreasureChest {
+ + iterator:IItemIterator(Int)
+ + getItems:TList()
+}
+
+enum TItemType {
+  ANY:Int = 0 {static}
+  WEAPON:Int = 1 {static}
+  RING:Int = 2 {static}
+  POTION:Int = 3 {static}
+}
+
+IItemIterator <|. TTreasureChestItemIterator
+IItemIterator ..> TItem
+TItem <-- TTreasureChest
+TTreasureChestItemIterator --> TTreasureChest
+TTreasureChestItemIterator -->TItemType
+TItem -> TItemType
+
+
+@enduml

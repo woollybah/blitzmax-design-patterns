@@ -1,0 +1,15 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+class TIvoryTower {
+ + getInstance:TIvoryTower() {static}
+}
+
+class TThreadsafeDoubleCheckLocking {
+ + getInstance:TThreadsafeDoubleCheckLocking() {static}
+}
+
+TIvoryTower -> TIvoryTower
+TThreadsafeDoubleCheckLocking -> TThreadsafeDoubleCheckLocking
+
+@enduml

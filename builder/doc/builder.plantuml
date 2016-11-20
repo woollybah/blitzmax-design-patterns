@@ -1,0 +1,81 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+class THeroBuilder {
+ - name:String
+ + New(Int, String)
+ + withHairType:THeroBuilder(Int)
+ + withHairColor:THeroBuilder(Int)
+ + withArmor:THeroBuilder(Int)
+ + withWeapon:THeroBuilder(Int)
+ + build:THero()
+}
+
+class THero {
+ + getProfession:Int()
+ + getName:String()
+ + getHairType:Int()
+ + getHairColor:Int()
+ + getArmor:Int()
+ + getWeapon:Int()
+ + ToString:String()
+}
+
+enum TProfession {
+ WARRIOR:Int = 0 {static}
+ THIEF:Int = 1 {static}
+ MAGE:Int = 2 {static}
+ PRIEST:Int = 3 {static}
+}
+
+enum TWeapon {
+ DAGGER:Int = 0 {static}
+ SWORD:int = 1 {static}
+ AXE:Int = 2 {static}
+ WARHAMMER:Int = 3 {static}
+ BOW:Int = 4 {static}
+}
+
+enum THairColor {
+ WHITE:Int = 0 {static}
+ BLOND:Int = 1 {static}
+ RED:Int = 2 {static}
+ BROWN:Int = 3 {static}
+ BLACK:Int = 4 {static}
+}
+
+enum THairType {
+ BALD:Int = 0 {static}
+ SHORT_STRAIGHT:Int = 1 {static}
+ CURLY:Int = 2 {static}
+ LONG_STRAIGHT:Int = 3 {static}
+ LONG_CURLY:Int = 4 {static}
+}
+
+enum TArmor {
+ CLOTHES:Int = 0 {static}
+ LEATHER:Int = 1 {static}
+ CHAIN_MAIL:Int = 2 {static}
+ PLATE_MAIL:Int = 3 {static}
+}
+
+THeroBuilder - THero
+
+THeroBuilder --> TProfession
+THeroBuilder --> TWeapon
+THeroBuilder --> THairColor
+THeroBuilder --> THairType
+THeroBuilder --> TArmor
+
+THero --> TProfession
+THero --> TWeapon
+THero --> THairColor
+THero --> THairType
+THero --> TArmor
+
+TProfession --[hidden] TWeapon
+TProfession -[hidden] THairColor
+TProfession -[hidden] THairType
+THairType --[hidden] TArmor
+
+@enduml

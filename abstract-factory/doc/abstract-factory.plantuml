@@ -1,0 +1,79 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IKingdomFactory {
+  + createCastle:ICastle()
+  + createKing:IKing()
+  + createArmy:IArmy()
+}
+
+class TOrcKingdomFactory {
+  + createCastle:ICastle()
+  + createKing:IKing()
+  + createArmy:IArmy()
+}
+
+class TElfKingdomFactory{
+  + createCastle:ICastle()
+  + createKing:IKing()
+  + createArmy:IArmy()
+}
+
+class TOrcArmy {
+  + ToString:String()
+}
+
+class TOrcCastle {
+  + ToString:String()
+}
+
+class TOrcKing {
+  + ToString:String()
+}
+
+' together - layout hint
+together {
+ class TElfKing {
+  + ToString:String()
+ }
+
+ class TElfCastle {
+  + ToString:String()
+ }
+
+ class TElfArmy {
+  + ToString:String()
+ }
+}
+
+interface IArmy
+
+interface ICastle
+
+interface IKing
+
+
+TOrcKingdomFactory .|> IKingdomFactory
+IKingdomFactory <|. TElfKingdomFactory
+
+TOrcKingdomFactory ..> TOrcArmy
+TOrcKingdomFactory ..> TOrcCastle
+TOrcKingdomFactory ..> TOrcKing
+
+TElfKingdomFactory ..> TElfKing
+TElfKingdomFactory ..> TElfCastle
+TElfKingdomFactory ..> TElfArmy
+
+TOrcArmy ..|> IArmy
+TOrcCastle ..|> ICastle
+TOrcKing ..|> IKing
+
+TElfArmy ..|> IArmy
+TElfCastle ..|> ICastle
+TElfKing ..|> IKing
+
+' layout hints
+IArmy --[hidden] ICastle
+ICastle --[hidden] IKing
+
+@enduml

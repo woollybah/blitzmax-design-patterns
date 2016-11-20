@@ -1,0 +1,59 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 100
+
+interface IPotion {
+ + drink()
+}
+
+class THealingPotion {
+ + drink()
+}
+
+class TInvisibilityPotion {
+ + drink()
+}
+
+class TPoisonPotion {
+ + drink()
+}
+
+class THolyWaterPotion {
+ + drink()
+}
+
+class TStrengthPotion {
+ + drink()
+}
+
+class TAlchemistShop {
+ + fillShelves()
+ + enumerate()
+}
+
+class TPotionFactory {
+ + createPotion:IPotion(Int)
+}
+
+enum TPotionType {
+ HEALING:Int = 0 {static}
+ INVISIBILITY:Int = 1 {static}
+ STRENGTH:Int = 2 {static}
+ HOLY_WATER:Int = 3 {static}
+ POISON:Int = 4 {static}
+}
+
+THealingPotion ..|> IPotion
+TInvisibilityPotion ..|> IPotion
+TPoisonPotion ..|> IPotion
+IPotion <|.. THolyWaterPotion
+IPotion <|. TStrengthPotion
+IPotion <-- TPotionFactory
+TAlchemistShop -> "-topShelf" IPotion
+TAlchemistShop -> "-bottomShelf" IPotion
+TAlchemistShop ..> TPotionFactory
+TAlchemistShop ..> TPotionType
+
+
+@enduml

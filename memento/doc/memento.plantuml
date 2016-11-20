@@ -1,0 +1,42 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IStarMemento {
+}
+
+class TStar {
+ - ageYears:Int
+ - massTons:Int
+ + New(Int, Int, Int)
+ + timePasses()
+ + getMemento:IStarMemento()
+ + setMemento(IStarMemento)
+ + ToString:String()
+}
+
+class TStarMementoInternal {
+ - ageYears:Int
+ - massTons:Int
+ + getType:Int()
+ + setType(Int)
+ + getAgeYears:Int()
+ + setAgeYears(Int)
+ + getMassTons:Int()
+ + setMassTons(Int)
+}
+
+enum TStarType {
+ SUN:Int = 0 {static}
+ RED_GIANT:Int = 1 {static}
+ WHITE_DWARF:Int = 2 {static}
+ SUPERNOVA:Int = 3 {static}
+ DEAD:Int = 4 {static}
+ UNDEFINED:Int = 5 {static}
+}
+
+TStar --> TStarType
+TStar <- TStarMementoInternal
+TStarMementoInternal --|> IStarMemento
+TStarMementoInternal --> TStarType
+
+@enduml

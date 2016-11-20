@@ -1,0 +1,39 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+abstract class TExpression {
+ + interpret:Int() {abstract}
+ + ToString:String() {abstract}
+}
+
+class TNumberExpression {
+ + New(Int)
+ + New(String)
+ + interpret:Int()
+ + ToString:String()
+}
+
+class TMinusExpression {
+ + New(TExpression, TExpression)
+ + interpret:Int()
+ + ToString:String()
+}
+
+class TPlusExpression {
+ + New(TExpression, TExpression)
+ + interpret:Int()
+ + ToString:String()
+}
+
+class TMultiplyExpression {
+ + New(TExpression, TExpression)
+ + interpret:Int()
+ + ToString:String()
+}
+
+TMinusExpression --|> TExpression
+TPlusExpression --|> TExpression
+TExpression <|- TMultiplyExpression
+TExpression <|-- TNumberExpression
+
+@enduml

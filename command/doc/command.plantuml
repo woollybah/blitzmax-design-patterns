@@ -1,0 +1,54 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+class TWizard {
+ + castSpell(TCommand, TTarget)
+ + undoLastSpell()
+ + redoLastSpell()
+ + ToString:String()
+}
+
+abstract class TCommand {
+ + execute(TTarget) {abstract}
+ + undo() {abstract}
+ + redo() {abstract}
+ + ToString:String() {abstract}
+}
+
+class TShrinkSpell {
+ + execute(TTarget)
+ + undo()
+ + redo()
+ + ToString:String()
+}
+
+class TInvisibilitySpell {
+ + execute(TTarget)
+ + undo()
+ + redo()
+ + ToString:String()
+}
+
+abstract class TTarget {
+ - size:Int
+ - visibility:Int
+ + getSize:Int()
+ + setSize(Int)
+ + getVisibility:Int()
+ + setVisibility(Int)
+ + ToString:String() {abstract}
+ + printStatus()
+}
+
+class TGoblin {
+ + ToString:String()
+}
+
+TWizard --> TCommand
+TCommand <|-- TShrinkSpell
+TCommand <|-- TInvisibilitySpell
+TShrinkSpell --> TTarget
+TInvisibilitySpell --> TTarget
+TTarget <|-- TGoblin
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+interface IDragonSlayingStrategy {
+ + execute()
+}
+
+class TDragonSlayer {
+ + New(IDragonSlayingStrategy)
+ + changeStrategy(IDragonSlayingStrategy)
+ + goToBattle()
+}
+
+class TProjectileStrategy {
+ + execute()
+}
+
+class TMeleeStrategy {
+ + execute()
+}
+
+class TSpellStrategy {
+ + execute()
+}
+
+TDragonSlayer --> IDragonSlayingStrategy
+IDragonSlayingStrategy <|.. TProjectileStrategy
+IDragonSlayingStrategy <|.. TMeleeStrategy
+IDragonSlayingStrategy <|.. TSpellStrategy
+
+@enduml

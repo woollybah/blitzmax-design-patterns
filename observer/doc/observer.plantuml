@@ -1,0 +1,37 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 60
+
+interface IWeatherObserver {
+ + update(Int)
+}
+
+class TWeather {
+ + addObserver(IWeatherObserver)
+ + removeObserver(IWeatherObserver)
+ + timePasses()
+ + notifyObservers()
+}
+
+class THobbits {
+ + update(Int)
+}
+
+class TOrcs {
+ + update(Int)
+}
+
+enum TWeatherType {
+ SUNNY:Int = 0 {static}
+ RAINY:Int = 1 {static}
+ WINDY:Int = 2 {static}
+ COLD:Int = 3 {static}
+}
+
+TWeather -> TWeatherType
+TWeather --> IWeatherObserver
+IWeatherObserver <|- THobbits
+IWeatherObserver <|-- TOrcs
+
+@enduml

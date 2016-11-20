@@ -1,0 +1,62 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+skinparam nodesep 80
+
+interface IParty {
+ + addMember(IPartyMember)
+ + act(IPartyMember, Int)
+}
+
+class TPartyImpl {
+ + addMember(IPartyMember)
+ + act(IPartyMember, Int)
+}
+
+interface IPartyMember {
+ + joinedParty(IParty)
+ + partyAction(Int)
+ + act(Int)
+}
+
+abstract class TPartyMemberBase {
+ + joinedParty(IParty)
+ + partyAction(Int)
+ + act(Int)
+ + ToString:String() {abstract}
+}
+
+enum TAction {
+ HUNT:Int = 0 {static}
+ TALE:Int = 1 {static}
+ GOLD:Int = 2 {static}
+ ENEMY:Int = 3 {static}
+}
+
+class TRogue {
+ + ToString:String()
+}
+
+class THobbit {
+ + ToString:String()
+}
+
+class THunter {
+ + ToString:String()
+}
+
+class TWizard {
+ + ToString:String()
+}
+
+TPartyImpl -> IPartyMember
+TPartyImpl ..|> IParty
+IPartyMember <|.. TPartyMemberBase
+IParty ..> TAction
+TWizard --|> TPartyMemberBase
+IParty <- TPartyMemberBase
+TPartyMemberBase <|- THunter
+TPartyMemberBase <|-- TRogue
+TPartyMemberBase <|-- THobbit
+
+@enduml
