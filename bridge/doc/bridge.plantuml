@@ -1,0 +1,92 @@
+@startuml
+!include "../../_doc/settings.iuml"
+
+abstract class TMagicWeapon {
+ + New(TMagicWeaponImpl)
+ + wield() {abstract}
+ + swing() {abstract}
+ + unwield() {abstract}
+ + getImpl:TMagicWeaponImpl()
+}
+
+abstract class TMagicWeaponImpl {
+ + wieldImp() {abstract}
+ + swingImp() {abstract}
+ + unwieldImp() {abstract}
+}
+
+class TSoulEatingMagicWeapon {
+ + New(TSoulEatingMagicWeaponImpl)
+ + getImp:TSoulEatingMagicWeaponImpl()
+ + wield()
+ + swing()
+ + unwield()
+ + eatSoul()
+}
+
+class TBlindingMagicWeapon {
+ + New(TBlindingMagicWeaponImpl)
+ + getImpl:TBlindingMagicWeaponImpl()
+ + wield()
+ + swing()
+ + unwield()
+ + blind()
+}
+
+class TFlyingMagicWeapon {
+ + New(TFlyingMagicWeaponImpl)
+ + getImp:TFlyingMagicWeaponImpl()
+ + wield()
+ + swing()
+ + unwield()
+ + fly()
+}
+
+class TFlyingMagicWeaponImpl {
+ + flyImp()
+}
+
+class TSoulEatingMagicWeaponImpl {
+ + eatSoulImp()
+}
+
+class TBlindingMagicWeaponImpl {
+ + blindImp()
+}
+
+class TMjollnir {
+ + wieldImp()
+ + swingImp()
+ + unwieldImp()
+ + flyImp()
+}
+
+class TStormBringer {
+ + wieldImp()
+ + swingImp()
+ + unwieldImp()
+ + eatSoulImp()
+}
+
+class TExcalibur {
+ + wieldImp()
+ + swingImp()
+ + unwieldImp()
+ + blindImp()
+}
+
+TSoulEatingMagicWeapon --|> TMagicWeapon
+TBlindingMagicWeapon --|> TMagicWeapon
+TFlyingMagicWeapon --|> TMagicWeapon
+
+TMagicWeapon --> TMagicWeaponImpl
+
+TMagicWeaponImpl <|-- TFlyingMagicWeaponImpl
+TMagicWeaponImpl <|-- TSoulEatingMagicWeaponImpl
+TMagicWeaponImpl <|-- TBlindingMagicWeaponImpl
+
+TFlyingMagicWeaponImpl <|-- TMjollnir
+TSoulEatingMagicWeaponImpl <|-- TStormBringer
+TBlindingMagicWeaponImpl <|-- TExcalibur
+
+@enduml
